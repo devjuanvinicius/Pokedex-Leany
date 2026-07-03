@@ -4,7 +4,7 @@ Aplicação web de Pokédex construída em React, consumindo a [PokéAPI](https:
 Permite listar, buscar, filtrar, favoritar, comparar e explorar detalhes e a
 cadeia evolutiva dos Pokémon.
 
-**Deploy:** _(adicionar o link da Vercel aqui após publicar)_
+**Deploy:** https://pokedex-leany.vercel.app/
 
 ## Funcionalidades
 
