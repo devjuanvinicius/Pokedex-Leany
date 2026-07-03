@@ -2,26 +2,40 @@ import { translateTypeName } from '../lib/pokemon'
 
 interface TypeBadgeProps {
   typeName: string
+  /** Quando true, mostra apenas o círculo com o ícone, sem o nome do tipo. */
+  iconOnly?: boolean
 }
 
-/**
- * Pill colorida com a cor do próprio tipo (fonte: Figma): um círculo branco com
- * o ícone do elemento (na cor do tipo), seguido do nome do tipo em português.
- */
-function TypeBadge({ typeName }: TypeBadgeProps) {
+function TypeBadge({ typeName, iconOnly = false }: TypeBadgeProps) {
+  const iconCircle = (
+    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
+      <img
+        src={`/types/${typeName}.svg`}
+        alt=""
+        aria-hidden="true"
+        className="h-3 w-3"
+      />
+    </span>
+  )
+
+  if (iconOnly) {
+    return (
+      <span
+        className="inline-flex items-center rounded-full p-0.5"
+        style={{ backgroundColor: `var(--color-type-${typeName})` }}
+        title={translateTypeName(typeName)}
+      >
+        {iconCircle}
+      </span>
+    )
+  }
+
   return (
     <span
       className="inline-flex items-center gap-1.5 rounded-full py-0.5 pr-3 pl-0.5 text-xs font-semibold text-black"
       style={{ backgroundColor: `var(--color-type-${typeName})` }}
     >
-      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
-        <img
-          src={`/types/${typeName}.svg`}
-          alt=""
-          aria-hidden="true"
-          className="h-3 w-3"
-        />
-      </span>
+      {iconCircle}
       {translateTypeName(typeName)}
     </span>
   )

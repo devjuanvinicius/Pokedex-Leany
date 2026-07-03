@@ -55,10 +55,25 @@ export interface Pokemon {
   species: NamedApiResource
 }
 
+export interface FlavorTextEntry {
+  flavor_text: string
+  language: NamedApiResource
+  version: NamedApiResource
+}
+
+export interface Genus {
+  genus: string
+  language: NamedApiResource
+}
+
 export interface PokemonSpecies {
   id: number
   name: string
   generation: NamedApiResource
+  /** Proporção de fêmeas em oitavos; -1 significa Pokémon sem gênero. */
+  gender_rate: number
+  flavor_text_entries: FlavorTextEntry[]
+  genera: Genus[]
   evolution_chain: {
     url: string
   }
@@ -81,7 +96,14 @@ export interface EvolutionChain {
   chain: EvolutionChainLink
 }
 
+export interface TypeDamageRelations {
+  double_damage_from: NamedApiResource[]
+  half_damage_from: NamedApiResource[]
+  no_damage_from: NamedApiResource[]
+}
+
 export interface TypeResponse {
+  damage_relations: TypeDamageRelations
   pokemon: {
     slot: number
     pokemon: NamedApiResource

@@ -40,7 +40,7 @@ function HomePage() {
               (_unused, index) => <PokemonCardSkeleton key={index} />,
             )
           : pokemonList.map((pokemon) => (
-              <PokemonCard key={pokemon.name} pokemonName={pokemon.name} />
+              <PokemonCard key={pokemon.name} nameOrId={pokemon.name} />
             ))}
       </div>
 

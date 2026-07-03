@@ -1,27 +1,48 @@
-import { Link } from '@tanstack/react-router'
-import { GitCompareArrows, Heart } from 'lucide-react'
+import { Link, useLocation } from '@tanstack/react-router'
 
 /**
- * Barra de navegação inferior, compartilhada por todas as telas.
- *
- * Nesta fase apenas a aba "Pokédex" navega (rota `/`). As abas "Favoritos" e
- * "Comparar" são placeholders até suas rotas existirem (Fases 5 e 7).
- * O ícone da Pokédex usa a pokébola exportada do Figma; os demais usam lucide.
- * A estrutura definitiva de abas ainda será confirmada com o time de design.
+ * Ícones das abas em dois estados (exportados do Figma em public/):
+ * `inactive` = contorno (aba não selecionada), `active` = colorido (aba atual).
+ */
+const POKEDEX_ICON = {
+  active: '/Property%201=Default.svg',
+  inactive: '/Property%201=Variant2.svg',
+}
+const FAVORITES_ICON = {
+  active: '/Property%201=Default-1.svg',
+  inactive: '/Property%201=Variant2-1.svg',
+}
+const REGIONS_ICON_INACTIVE = '/Property%201=Variant2-2.svg'
+
+const tabBaseClassName = 'flex flex-col items-center gap-1 text-xs font-medium'
+
+function TabIcon({ src }: { src: string }) {
+  return <img src={src} alt="" aria-hidden="true" className="h-6 w-6" />
+}
+
+/**
+ * Barra de navegação inferior. Pokédex (`/`) e Favoritos (`/favoritos`) navegam
+ * e trocam o ícone para a versão colorida quando estão na página atual.
+ * "Regiões" é um placeholder desabilitado (fora do escopo do desafio), exibido
+ * sempre no estado de contorno.
  */
 function BottomNav() {
+  const pathname = useLocation({ select: (location) => location.pathname })
+  const isPokedexActive = pathname === '/'
+  const isFavoritesActive = pathname.startsWith('/favoritos')
+
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-black/10 bg-background">
       <div className="mx-auto flex max-w-2xl items-center justify-around px-6 py-3">
         <Link
           to="/"
-          className="flex flex-col items-center gap-1 text-xs font-medium text-text"
+          className={tabBaseClassName}
+          activeProps={{ className: 'text-text' }}
+          inactiveProps={{ className: 'text-text-muted' }}
+          activeOptions={{ exact: true }}
         >
-          <img
-            src="/Property%201=Default-2.svg"
-            alt=""
-            aria-hidden="true"
-            className="h-6 w-6"
+          <TabIcon
+            src={isPokedexActive ? POKEDEX_ICON.active : POKEDEX_ICON.inactive}
           />
           Pokédex
         </Link>
@@ -29,20 +50,25 @@ function BottomNav() {
         <button
           type="button"
           disabled
-          className="flex flex-col items-center gap-1 text-xs font-medium text-text-muted"
+          className={`${tabBaseClassName} text-text-muted`}
         >
-          <Heart size={22} aria-hidden="true" />
-          Favoritos
+          <TabIcon src={REGIONS_ICON_INACTIVE} />
+          Regiões
         </button>
 
-        <button
-          type="button"
-          disabled
-          className="flex flex-col items-center gap-1 text-xs font-medium text-text-muted"
+        <Link
+          to="/favoritos"
+          className={tabBaseClassName}
+          activeProps={{ className: 'text-text' }}
+          inactiveProps={{ className: 'text-text-muted' }}
         >
-          <GitCompareArrows size={22} aria-hidden="true" />
-          Comparar
-        </button>
+          <TabIcon
+            src={
+              isFavoritesActive ? FAVORITES_ICON.active : FAVORITES_ICON.inactive
+            }
+          />
+          Favoritos
+        </Link>
       </div>
     </nav>
   )

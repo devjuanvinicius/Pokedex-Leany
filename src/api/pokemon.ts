@@ -4,6 +4,7 @@ import type {
   Pokemon,
   PokemonListResponse,
   PokemonSpecies,
+  TypeResponse,
 } from '../types/pokeapi'
 
 export interface GetPokemonListParams {
@@ -28,6 +29,10 @@ export function getPokemonSpecies(
   nameOrId: string | number,
 ): Promise<PokemonSpecies> {
   return fetchFromPokeApi<PokemonSpecies>(`/pokemon-species/${nameOrId}`)
+}
+
+export function getType(nameOrId: string | number): Promise<TypeResponse> {
+  return fetchFromPokeApi<TypeResponse>(`/type/${nameOrId}`)
 }
 
 export function getEvolutionChain(
