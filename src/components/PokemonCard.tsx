@@ -43,7 +43,7 @@ export default function PokemonCard({ nameOrId }: PokemonCardProps) {
       className="block"
     >
       <article
-        className="border-border relative flex min-h-24 items-center gap-3 overflow-hidden rounded-2xl border pl-4"
+        className="border-border relative isolate flex min-h-24 items-center gap-3 overflow-hidden rounded-2xl border pl-4"
         style={{
           backgroundColor: `color-mix(in srgb, var(--color-type-${primaryType}) 14%, #ffffff)`,
         }}
