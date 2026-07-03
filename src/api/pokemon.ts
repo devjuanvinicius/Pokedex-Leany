@@ -35,7 +35,7 @@ export function getType(nameOrId: string | number): Promise<TypeResponse> {
   return fetchFromPokeApi<TypeResponse>(`/type/${nameOrId}`)
 }
 
-export function getEvolutionChain(
+function getEvolutionChain(
   urlOrId: string | number,
 ): Promise<EvolutionChain> {
   const pathOrUrl =
