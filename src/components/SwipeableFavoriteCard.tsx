@@ -19,6 +19,9 @@ export default function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteC
   const hasMovedRef = useRef(false)
 
   function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
+    // Swipe apenas em toque. No desktop (mouse), o clique deve navegar para o
+    // detalhe normalmente e a remoção é feita clicando de novo no coração.
+    if (event.pointerType !== 'touch') return
     startXRef.current = event.clientX
     hasMovedRef.current = false
     setIsDragging(true)
