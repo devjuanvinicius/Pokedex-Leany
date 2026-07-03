@@ -1,7 +1,6 @@
 import { useFavoritesStore } from '../store/useFavoritesStore'
 import SwipeableFavoriteCard from '../components/SwipeableFavoriteCard'
 
-/** Artwork do Magikarp (id 129), exibido em cinza no estado vazio. */
 const MAGIKARP_ARTWORK_URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png'
 
@@ -35,7 +34,7 @@ function FavoritesPage() {
       {favoriteIds.length === 0 ? (
         <EmptyFavorites />
       ) : (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {favoriteIds.map((favoriteId) => (
             <SwipeableFavoriteCard key={favoriteId} favoriteId={favoriteId} />
           ))}

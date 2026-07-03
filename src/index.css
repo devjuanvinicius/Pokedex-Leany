@@ -52,3 +52,16 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
 }
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-sheet-up {
+  animation: sheet-up 0.25s ease-out;
+}

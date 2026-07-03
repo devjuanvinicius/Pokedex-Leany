@@ -1,7 +1,3 @@
-/**
- * Placeholder exibido enquanto o detalhe do Pokémon está sendo carregado,
- * mantendo a mesma altura do card real para evitar saltos de layout.
- */
 export default function PokemonCardSkeleton() {
   return (
     <div

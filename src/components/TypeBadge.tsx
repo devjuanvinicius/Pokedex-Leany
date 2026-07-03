@@ -2,7 +2,6 @@ import { translateTypeName } from '../lib/pokemon'
 
 interface TypeBadgeProps {
   typeName: string
-  /** Quando true, mostra apenas o círculo com o ícone, sem o nome do tipo. */
   iconOnly?: boolean
 }
 

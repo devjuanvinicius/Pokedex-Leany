@@ -7,10 +7,6 @@ interface FavoritesState {
   isFavorite: (pokemonId: number) => boolean
 }
 
-/**
- * Estado global dos Pokémon favoritados, persistido no localStorage para
- * sobreviver ao recarregamento da página (requisito de persistência).
- */
 export const useFavoritesStore = create<FavoritesState>()(
   persist(
     (set, get) => ({

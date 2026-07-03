@@ -1,29 +1,58 @@
-import { usePokemonList } from '../hooks/usePokemonList'
+import { useMemo, useState } from 'react'
+import { useAllPokemon } from '../hooks/useAllPokemon'
+import { useTypePokemonIds } from '../hooks/useTypePokemonIds'
+import { useListPreferencesStore } from '../store/useListPreferencesStore'
 import PokemonCard from '../components/PokemonCard'
 import PokemonCardSkeleton from '../components/PokemonCardSkeleton'
 import SearchBar from '../components/SearchBar'
 import ListControls from '../components/ListControls'
 
-const INITIAL_SKELETON_COUNT = 8
+const PAGE_SIZE = 20
 
 function HomePage() {
-  const {
-    data,
-    isPending,
-    isError,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = usePokemonList()
+  const [searchQuery, setSearchQuery] = useState('')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
-  const pokemonList = data?.pages.flatMap((page) => page.results) ?? []
+  const selectedType = useListPreferencesStore((state) => state.selectedType)
+  const sortOrder = useListPreferencesStore((state) => state.sortOrder)
+
+  const { data: allPokemon, isPending, isError } = useAllPokemon()
+  const { data: typePokemonIds, isPending: isTypePending } =
+    useTypePokemonIds(selectedType)
+
+  const filterSignature = `${searchQuery}|${selectedType}|${sortOrder}`
+  const [previousFilterSignature, setPreviousFilterSignature] =
+    useState(filterSignature)
+  if (filterSignature !== previousFilterSignature) {
+    setPreviousFilterSignature(filterSignature)
+    setVisibleCount(PAGE_SIZE)
+  }
+
+  const filteredPokemon = useMemo(() => {
+    if (!allPokemon) return []
+    const normalizedQuery = searchQuery.trim().toLowerCase()
+    const result = allPokemon.filter((pokemon) => {
+      const matchesQuery = pokemon.name.includes(normalizedQuery)
+      const matchesType =
+        !selectedType || (typePokemonIds?.has(pokemon.id) ?? false)
+      return matchesQuery && matchesType
+    })
+    result.sort((first, second) =>
+      sortOrder === 'number-asc' ? first.id - second.id : second.id - first.id,
+    )
+    return result
+  }, [allPokemon, searchQuery, selectedType, typePokemonIds, sortOrder])
+
+  const visiblePokemon = filteredPokemon.slice(0, visibleCount)
+  const isLoading = isPending || (selectedType !== null && isTypePending)
+  const hasMore = visibleCount < filteredPokemon.length
 
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-text">Listagem</h1>
 
       <div className="flex flex-col gap-3">
-        <SearchBar />
+        <SearchBar value={searchQuery} onChange={setSearchQuery} />
         <ListControls />
       </div>
 
@@ -34,31 +63,30 @@ function HomePage() {
         </p>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {isPending
-          ? Array.from({ length: INITIAL_SKELETON_COUNT }).map(
-              (_unused, index) => <PokemonCardSkeleton key={index} />,
-            )
-          : pokemonList.map((pokemon) => (
-              <PokemonCard key={pokemon.name} nameOrId={pokemon.name} />
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {isLoading
+          ? Array.from({ length: PAGE_SIZE }).map((_unused, index) => (
+              <PokemonCardSkeleton key={index} />
+            ))
+          : visiblePokemon.map((pokemon) => (
+              <PokemonCard key={pokemon.id} nameOrId={String(pokemon.id)} />
             ))}
       </div>
 
-      {!isPending && !isError && pokemonList.length === 0 ? (
+      {!isLoading && !isError && filteredPokemon.length === 0 ? (
         <p className="text-center text-sm text-text-muted">
           Nenhum Pokémon encontrado.
         </p>
       ) : null}
 
-      {hasNextPage ? (
+      {hasMore ? (
         <div className="flex justify-center">
           <button
             type="button"
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-            className="rounded-xl bg-surface-strong px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+            className="rounded-xl bg-surface-strong px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            {isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
+            Carregar mais
           </button>
         </div>
       ) : null}

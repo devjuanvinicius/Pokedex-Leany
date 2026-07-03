@@ -149,7 +149,6 @@ function PokemonDetailPage() {
         ) : null}
       </div>
 
-      {/* Nome, número e tipos */}
       <div className="flex flex-col gap-3">
         <div>
           <h1 className="text-text text-3xl font-bold">
@@ -170,7 +169,6 @@ function PokemonDetailPage() {
 
       <hr className="border-border" />
 
-      {/* Peso, altura, categoria e habilidade */}
       <div className="grid grid-cols-2 gap-4">
         <InfoBox
           label="PESO"
@@ -196,7 +194,6 @@ function PokemonDetailPage() {
 
       {species ? <GenderBar genderRate={species.gender_rate} /> : null}
 
-      {/* Fraquezas */}
       {weaknesses.length > 0 ? (
         <div className="flex flex-col gap-3">
           <h2 className="text-text text-xl font-bold">Fraquezas</h2>
@@ -208,7 +205,6 @@ function PokemonDetailPage() {
         </div>
       ) : null}
 
-      {/* Evoluções */}
       {evolutionSteps.length > 1 ? (
         <div className="flex flex-col gap-3">
           <h2 className="text-text text-xl font-bold">Evoluções</h2>

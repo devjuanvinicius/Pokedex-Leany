@@ -11,7 +11,6 @@ import PokemonCardSkeleton from './PokemonCardSkeleton'
 import TypeBadge from './TypeBadge'
 
 interface PokemonCardProps {
-  /** Nome (listagem) ou id (favoritos) do Pokémon a exibir. */
   nameOrId: string
 }
 
@@ -44,7 +43,7 @@ export default function PokemonCard({ nameOrId }: PokemonCardProps) {
       className="block"
     >
       <article
-        className="border-border relative flex h-24 items-center gap-3 overflow-hidden rounded-2xl border pl-4"
+        className="border-border relative flex min-h-24 items-center gap-3 overflow-hidden rounded-2xl border pl-4"
         style={{
           backgroundColor: `color-mix(in srgb, var(--color-type-${primaryType}) 14%, #ffffff)`,
         }}
@@ -64,7 +63,7 @@ export default function PokemonCard({ nameOrId }: PokemonCardProps) {
         </div>
 
         <div
-          className="relative flex h-full w-28 shrink-0 items-center justify-center overflow-hidden"
+          className="relative flex w-28 shrink-0 items-center justify-center self-stretch overflow-hidden"
           style={{ backgroundColor: `var(--color-type-${primaryType})` }}
         >
           <img

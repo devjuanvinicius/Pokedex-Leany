@@ -1,10 +1,3 @@
-/**
- * Tipos das respostas cruas da PokeAPI (https://pokeapi.co/docs/v2).
- * Os campos usam snake_case propositalmente: espelham o JSON retornado pela API
- * (response.json() não transforma chaves), não uma abreviação de nomenclatura.
- * Refletem apenas os campos usados pela aplicação, não a resposta completa da API.
- */
-
 export interface NamedApiResource {
   name: string
   url: string
@@ -70,7 +63,6 @@ export interface PokemonSpecies {
   id: number
   name: string
   generation: NamedApiResource
-  /** Proporção de fêmeas em oitavos; -1 significa Pokémon sem gênero. */
   gender_rate: number
   flavor_text_entries: FlavorTextEntry[]
   genera: Genus[]

@@ -2,10 +2,6 @@ import { useQueries } from '@tanstack/react-query'
 import { getType } from '../api/pokemon'
 import { computeWeaknesses } from '../lib/pokemon'
 
-/**
- * Busca as relações de dano de cada tipo do Pokémon e deriva a lista de
- * fraquezas (tipos com efetividade final maior que 1x).
- */
 export function useWeaknesses(typeNames: string[]) {
   const results = useQueries({
     queries: typeNames.map((typeName) => ({

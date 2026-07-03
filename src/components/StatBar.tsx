@@ -1,9 +1,5 @@
 import { translateStatName } from '../lib/pokemon'
 
-/**
- * Maior valor base possível de uma estatística na PokeAPI, usado para
- * normalizar a largura da barra.
- */
 const MAX_BASE_STAT = 255
 
 interface StatBarProps {
@@ -12,10 +8,6 @@ interface StatBarProps {
   accentColor: string
 }
 
-/**
- * Linha de uma estatística base: nome (em português), valor e barra
- * proporcional preenchida com a cor de destaque (cor do tipo do Pokémon).
- */
 function StatBar({ statName, baseStat, accentColor }: StatBarProps) {
   const fillPercentage = Math.min((baseStat / MAX_BASE_STAT) * 100, 100)
 

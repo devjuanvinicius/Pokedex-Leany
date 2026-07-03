@@ -70,10 +70,6 @@ function EvolutionRow({ speciesName }: { speciesName: string }) {
   )
 }
 
-/**
- * Lista vertical da cadeia de evolução: cada espécie é uma linha clicável que
- * leva ao seu detalhe, com uma seta indicando o nível de evolução entre elas.
- */
 function EvolutionList({ steps }: EvolutionListProps) {
   return (
     <div className="flex flex-col rounded-2xl border border-border p-3">

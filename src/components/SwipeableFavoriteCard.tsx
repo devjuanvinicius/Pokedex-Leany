@@ -4,18 +4,12 @@ import { Trash2 } from 'lucide-react'
 import { useFavoritesStore } from '../store/useFavoritesStore'
 import PokemonCard from './PokemonCard'
 
-/** Largura (px) da faixa vermelha revelada ao arrastar o card para a esquerda. */
 const REVEAL_WIDTH = 88
 
 interface SwipeableFavoriteCardProps {
   favoriteId: number
 }
 
-/**
- * Card de favorito com gesto de arrastar-para-remover: arrastar para a esquerda
- * (toque ou mouse) revela uma faixa com lixeira que remove o Pokémon dos
- * favoritos. O botão de coração do próprio card também remove.
- */
 function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteCardProps) {
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite)
   const [offset, setOffset] = useState(0)
@@ -46,7 +40,6 @@ function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteCardProps) {
     setOffset(shouldOpen ? -REVEAL_WIDTH : 0)
   }
 
-  // Evita disparar a navegação do card quando o ponteiro foi arrastado.
   function suppressClickAfterDrag(event: MouseEvent<HTMLDivElement>) {
     if (hasMovedRef.current) {
       event.preventDefault()
