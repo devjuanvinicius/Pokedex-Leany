@@ -1,1 +1,54 @@
 @import 'tailwindcss';
+
+@theme static {
+  /*
+   * Cores por tipo de Pokémon.
+   * Fonte: Figma (JSON de cores dos botões de tipo). Os nomes seguem os slugs
+   * em inglês da PokeAPI para permitir referência direta via
+   * var(--color-type-<tipo>) a partir do tipo retornado pela API.
+   *
+   * Usa "@theme static" porque estes tokens são referenciados dinamicamente
+   * (var(--color-type-${tipo}) no PokemonCard) e o Tailwind v4 removeria tokens
+   * sem uso estático detectável. "static" força a emissão de todos eles.
+   */
+  --color-type-normal: #919aa2;
+  --color-type-fire: #ff9d55;
+  --color-type-water: #5090d6;
+  --color-type-electric: #f4d23c;
+  --color-type-grass: #63bc5a;
+  --color-type-ice: #73cec0;
+  --color-type-fighting: #ce416b;
+  --color-type-poison: #b567ce;
+  --color-type-ground: #d97845;
+  --color-type-flying: #89aae3;
+  --color-type-psychic: #fa7179;
+  --color-type-bug: #91c12f;
+  --color-type-rock: #c5b78c;
+  --color-type-ghost: #5269ad;
+  --color-type-dragon: #0b6dc3;
+  --color-type-dark: #5a5465;
+  --color-type-steel: #5a8ea2;
+  --color-type-fairy: #ec8fe6;
+
+  /*
+   * Cores neutras / tema claro. Valores exatos do Dev Mode do Figma.
+   * surface-strong (#333333): dropdowns de filtro; também a cor do número N° no card.
+   * border (#E6E6E6): borda da bottom nav, da barra de busca e dos cards.
+   */
+  --color-background: #ffffff;
+  --color-surface-strong: #333333;
+  --color-border: #e6e6e6;
+  --color-text: #000000;
+  --color-text-muted: #999999;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
