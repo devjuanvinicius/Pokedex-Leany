@@ -16,7 +16,7 @@ function TabIcon({ src }: { src: string }) {
   return <img src={src} alt="" aria-hidden="true" className="h-6 w-6" />
 }
 
-function BottomNav() {
+export default function BottomNav() {
   const pathname = useLocation({ select: (location) => location.pathname })
   const isPokedexActive = pathname === '/'
   const isFavoritesActive = pathname.startsWith('/favoritos')
@@ -66,5 +66,3 @@ function BottomNav() {
     </nav>
   )
 }
-
-export default BottomNav

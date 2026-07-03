@@ -130,7 +130,7 @@ function CompareStatRow({
   )
 }
 
-function ComparePage() {
+export default function ComparePage() {
   const [leftName, setLeftName] = useState<string | null>(null)
   const [rightName, setRightName] = useState<string | null>(null)
 
@@ -186,5 +186,3 @@ function ComparePage() {
     </div>
   )
 }
-
-export default ComparePage

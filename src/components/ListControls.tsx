@@ -1,7 +1,7 @@
 import TypeFilterDropdown from './TypeFilterDropdown'
 import SortDropdown from './SortDropdown'
 
-function ListControls() {
+export default function ListControls() {
   return (
     <div className="flex gap-3">
       <TypeFilterDropdown />
@@ -9,5 +9,3 @@ function ListControls() {
     </div>
   )
 }
-
-export default ListControls

@@ -24,7 +24,7 @@ function EmptyFavorites() {
   )
 }
 
-function FavoritesPage() {
+export default function FavoritesPage() {
   const favoriteIds = useFavoritesStore((state) => state.favoriteIds)
 
   return (
@@ -43,5 +43,3 @@ function FavoritesPage() {
     </div>
   )
 }
-
-export default FavoritesPage

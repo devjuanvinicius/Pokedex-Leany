@@ -7,7 +7,7 @@ import {
 } from '../lib/pokemon'
 import { useListPreferencesStore } from '../store/useListPreferencesStore'
 
-function TypeFilterDropdown() {
+export default function TypeFilterDropdown() {
   const selectedType = useListPreferencesStore((state) => state.selectedType)
   const setSelectedType = useListPreferencesStore(
     (state) => state.setSelectedType,
@@ -74,5 +74,3 @@ function TypeFilterDropdown() {
     </div>
   )
 }
-
-export default TypeFilterDropdown

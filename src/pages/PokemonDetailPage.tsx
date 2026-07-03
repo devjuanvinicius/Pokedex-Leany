@@ -79,7 +79,7 @@ function GenderBar({ genderRate }: { genderRate: number }) {
   )
 }
 
-function PokemonDetailPage() {
+export default function PokemonDetailPage() {
   const { pokemonId } = useParams({ from: '/pokemon/$pokemonId' })
   const {
     data: pokemon,
@@ -214,5 +214,3 @@ function PokemonDetailPage() {
     </div>
   )
 }
-
-export default PokemonDetailPage

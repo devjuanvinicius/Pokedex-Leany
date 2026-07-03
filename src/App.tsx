@@ -18,12 +18,10 @@ const queryClient = new QueryClient({
   },
 })
 
-function App() {
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
     </QueryClientProvider>
   )
 }
-
-export default App

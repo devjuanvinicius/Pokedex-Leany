@@ -9,7 +9,7 @@ import ListControls from '../components/ListControls'
 
 const PAGE_SIZE = 20
 
-function HomePage() {
+export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
@@ -93,5 +93,3 @@ function HomePage() {
     </div>
   )
 }
-
-export default HomePage

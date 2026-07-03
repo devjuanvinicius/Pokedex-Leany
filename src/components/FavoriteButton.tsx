@@ -7,7 +7,7 @@ interface FavoriteButtonProps {
   pokemonName: string
 }
 
-function FavoriteButton({ pokemonId, pokemonName }: FavoriteButtonProps) {
+export default function FavoriteButton({ pokemonId, pokemonName }: FavoriteButtonProps) {
   const isFavorite = useFavoritesStore((state) =>
     state.favoriteIds.includes(pokemonId),
   )
@@ -38,5 +38,3 @@ function FavoriteButton({ pokemonId, pokemonName }: FavoriteButtonProps) {
     </button>
   )
 }
-
-export default FavoriteButton

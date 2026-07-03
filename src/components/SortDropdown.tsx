@@ -10,7 +10,7 @@ const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
   { value: 'number-desc', label: 'Maior número' },
 ]
 
-function SortDropdown() {
+export default function SortDropdown() {
   const sortOrder = useListPreferencesStore((state) => state.sortOrder)
   const setSortOrder = useListPreferencesStore((state) => state.setSortOrder)
   const [isOpen, setIsOpen] = useState(false)
@@ -60,5 +60,3 @@ function SortDropdown() {
     </div>
   )
 }
-
-export default SortDropdown

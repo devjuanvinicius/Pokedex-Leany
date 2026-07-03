@@ -10,7 +10,7 @@ interface SwipeableFavoriteCardProps {
   favoriteId: number
 }
 
-function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteCardProps) {
+export default function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteCardProps) {
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite)
   const [offset, setOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -72,5 +72,3 @@ function SwipeableFavoriteCard({ favoriteId }: SwipeableFavoriteCardProps) {
     </div>
   )
 }
-
-export default SwipeableFavoriteCard

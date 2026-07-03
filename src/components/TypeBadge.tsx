@@ -5,7 +5,10 @@ interface TypeBadgeProps {
   iconOnly?: boolean
 }
 
-function TypeBadge({ typeName, iconOnly = false }: TypeBadgeProps) {
+export default function TypeBadge({
+  typeName,
+  iconOnly = false,
+}: TypeBadgeProps) {
   const iconCircle = (
     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
       <img
@@ -39,5 +42,3 @@ function TypeBadge({ typeName, iconOnly = false }: TypeBadgeProps) {
     </span>
   )
 }
-
-export default TypeBadge

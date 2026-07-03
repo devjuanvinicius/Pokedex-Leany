@@ -70,7 +70,7 @@ function EvolutionRow({ speciesName }: { speciesName: string }) {
   )
 }
 
-function EvolutionList({ steps }: EvolutionListProps) {
+export default function EvolutionList({ steps }: EvolutionListProps) {
   return (
     <div className="flex flex-col rounded-2xl border border-border p-3">
       {steps.map((step, index) => (
@@ -82,5 +82,3 @@ function EvolutionList({ steps }: EvolutionListProps) {
     </div>
   )
 }
-
-export default EvolutionList

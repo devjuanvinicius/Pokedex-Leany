@@ -7,7 +7,7 @@ interface PokemonPickerProps {
   onSelect: (name: string) => void
 }
 
-function PokemonPicker({ onSelect }: PokemonPickerProps) {
+export default function PokemonPicker({ onSelect }: PokemonPickerProps) {
   const { data: allPokemon } = useAllPokemon()
   const [query, setQuery] = useState('')
 
@@ -51,5 +51,3 @@ function PokemonPicker({ onSelect }: PokemonPickerProps) {
     </div>
   )
 }
-
-export default PokemonPicker

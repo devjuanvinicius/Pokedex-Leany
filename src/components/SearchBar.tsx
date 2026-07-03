@@ -5,7 +5,7 @@ interface SearchBarProps {
   onChange: (value: string) => void
 }
 
-function SearchBar({ value, onChange }: SearchBarProps) {
+export default function SearchBar({ value, onChange }: SearchBarProps) {
   return (
     <div className="flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-3">
       <Search size={18} className="text-text-muted" aria-hidden="true" />
@@ -20,5 +20,3 @@ function SearchBar({ value, onChange }: SearchBarProps) {
     </div>
   )
 }
-
-export default SearchBar
