@@ -10,7 +10,15 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Dados da PokeAPI são essencialmente estáticos (pokédex fixa), então
+      // evitamos refetches desnecessários ao longo da sessão.
+      staleTime: Infinity,
+    },
+  },
+})
 
 function App() {
   return (
